@@ -1,0 +1,11 @@
+Flask
+Flask-SocketIO
+Flask-SQLAlchemy
+SQLAlchemy
+python-engineio
+python-socketio
+eventlet
+gunicorn
+Pillow
+psutil
+# mss (optional, faster screenshots on Windows)

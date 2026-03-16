@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: staffwatch
+    env: python
+    region: oregon
+    plan: starter          # use 'free' for free tier (data resets on restart)
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --worker-class eventlet -w 1 --chdir server "app:socketio.run(app)" --bind 0.0.0.0:$PORT
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    disk:
+      name: staffwatch-data
+      mountPath: /opt/render/project/src
+      sizeGB: 1             # keeps SQLite alive across restarts
